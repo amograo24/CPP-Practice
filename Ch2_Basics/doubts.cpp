@@ -60,6 +60,10 @@ int main() {
     short int g = 32766.99999999999999999999999999999999999;
     short int h = 32767.99999999999999999999999999999999999;
     short int i = 32768.99999999;
+    int j = 38998938.9999999999; // round off, why?
+    int k = 23.67; // why no round of here?
+    int l = (int)38998938.9999999999;
+
     cout << "Value of a: " << a << endl;
     cout << "Value of b: " << b << endl;
     cout << "Value of c: " << c << endl;
@@ -69,6 +73,10 @@ int main() {
     cout << "Value of g: " << g << endl;
     cout << "Value of h: " << h << endl;
     cout << "Value of i: " << i << endl;
+    cout << "Value of j: " << j << endl;
+    cout << "Value of k: " << k << endl;
+    cout << "Value of l: " << l << endl;
+
 
 
 
