@@ -77,7 +77,9 @@ int main() {
     cout << "Value of k: " << k << endl;
     cout << "Value of l: " << l << endl;
 
-
+    /* Using std::cout instead of just cout even though the namespace is mentioned on the top */
+    std::cout << "Done using std::cout\n";
+    cout << "Done normally using cout\n";
 
 
 
