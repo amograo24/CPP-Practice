@@ -164,3 +164,6 @@ There's no specific order, but you need to set attributes first
 
 how does cout work? like does it convert everything into a string? doesn't seem to be doing that for boolean values.
 why does showboolalpha not work with setw whereas noboolalpha works
+look at namespace std also
+
+explain setw, setprecision

@@ -191,6 +191,7 @@ int main () {
     cout << setw(15) << right << setfill('-') << "Paste"  << setw(15) << right << setfill('-') << 8 << endl << endl;
 
     /* checking some setw and setprecision stuff */
+    // seems like boolalpha and setw just don't work together in my compiler, but it works online.
     cout << setw(10) <<  setfill('-') << "\nHello" << endl << endl;
     cout << setw(10) <<  right << setfill('-') << "Hello" << endl;
     cout << setw(10) <<  left << setfill('-') << "Hello" << endl;
@@ -207,14 +208,34 @@ int main () {
     cout << setprecision(4) << 12.3565646 << endl;
     cout << boolalpha << true << endl;
     cout << setw(10) << setfill('x') << true << endl;
-    cout << setw(10) << b1 << endl; // setfill/setw is not working
+    cout << setw(10) << b1 << endl; // setfill/setw is not working because of my compiler ig, works online
     cout << setw(10) << 10 << endl;
     cout << "string true upcoming:\n";
-    cout << setw(10) << "true" << endl;
+    cout << setw(10) << right << "true" << endl << left;
     cout << "using bool variable but without the bool alpha:\n";
     cout << setw(10) << noboolalpha << b1 << endl; // setw now works when bool alpha is there
     cout << endl;
     cout << boolalpha << b1 << endl;
     cout << "kk" << setw(10) << b1 << endl;
+    cout << setw('!') << 100 << endl; // '!' is converted to 33, so 33-3=30 dashes printed
+    cout << setw(true*4) << 100 << endl; //1 dash printed
+    cout << setw(10.380983080380) << 100 << endl; // 7 dash printed
+    // cout << setfill(65) << setw(10) << 100 << endl; // won't work!
+    // cout << setfill(33) << setw(10) << 100 << endl; // won't work!
+    // cout << setfill("a") << setw(10) << 100 << endl; // won't work! "a" is a string, not a char
+    // cout << setfill(8.99) << setw(10) << 100 << endl; // won't work!
+    cout << setfill('a') << setw(10) << 100 << endl; // works!
+    cout << setfill('x') << setw(-10) << 100 << endl;
+    cout << setfill('x') << setw(6.8) << 100 << endl; // 3 dashes printed
+    cout << (int) '!' << endl;
+    cout << setprecision('!') << 100.123456789 << endl; // getting 34 digits in total
+    cout << setprecision(33) << 100.123456789 << endl; // same thing as above
+    cout << setprecision('a') << 100.123456789 << endl; // getting 98 digits in total
+    cout << setprecision(8.990) << 100.123456789 << endl;
+    cout << setprecision(8) << 100.123456789 << endl;
+
+
+    
+
     return 0;
 }
