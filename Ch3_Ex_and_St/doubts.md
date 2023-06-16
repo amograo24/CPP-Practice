@@ -90,19 +90,37 @@ A) The modifiers signed, unsigned, long, and short can be applied to integer bas
 
 Q) Can a positive value >> max be positive?
 
-A)
+A) Yes! It definitely can. A value more than max (let's say is positive) will start from the negative as it is trying to be wrapped. But then it will eventually come to the positive side. For example, the range of `short` is `[-32768,32767]`.
+The following wraps would take place:
+  - 32768 -> -32768
+  - 32769 -> -32767
+  - 32770 -> -32766
+  - .
+  - .
+  - .
+  - 65536 -> 0 (32768*2=65536)
+  - 65540 -> 4 (+ve value)
 
 Q) What are the 2 maximum values and 2 minimum values for floating point numbers?
 
-A) 
+A) Let's take the `double` for example. There's a +ve maximum value, +ve minimum value, -ve maximum value, -ve minimum value.
+  - (a) `numeric_limits<double>::max()` 
+  - (b) `numeric_limits<double>::min()`
+  - (c) `-numeric_limits<double>::min()`
+  - (d) `-numeric_limits<double>::max()`
+  - (a)>(b)>(c)>(d)
+
+Q) What would you like to comment about how compound/complex expressions are evaluated?
+
+A) The rules of precedence followed by associativity are implemented recursively to the most important simple expression in the complex expression.
 
 Q) If a manipulator is not meant for a particular data type, and it is still used, then does an implicit type cast take place?
 
-A)
+A) No, an implicit type cast does not take place if a manipulator is not meant for a particular data type. The manipulator will simply be ignored. 
 
 Q) Can we use `char` in `setprecision` and `setw` and `int` in `setfill`? What happens when we use a `double`?
 
-A)
+A) 
 
 Q) Do input manipulators change the state of the input stream?
 
@@ -137,4 +155,9 @@ Q) expression vs statement?
 
 Q) numeric limits how does it work
 
-is expression evaluation a form of recursion?
+setprecision and setw what if they collide, try with rght and left
+does it round off?
+setfill ain't working
+
+does order matter?
+There's no specific order, but you need to set attributes first

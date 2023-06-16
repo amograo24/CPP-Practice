@@ -1,5 +1,6 @@
 #include <iostream>
 #include <limits>
+#include <iomanip>
 
 using namespace std;
 
@@ -108,5 +109,105 @@ int main () {
     /* Checking if a value is greater than max, then can it be +ve (in signed)*/
     cout << "\n65540 in a short: " << static_cast<short>(65540) << endl; // 4
     // 32768 is 1 more than max, so it will give -32768. Now, 32768*2=65536 which will give 0. So 64440 will give 4.
+
+    /* checking the min and max values of float */
+    cout << "\nMax value of float: " << numeric_limits<float>::max() << endl;
+    cout << "Min value of float: " << numeric_limits<float>::min() << endl;
+    // both of the above give positive values
+
+    /* checking if manipulators work for unauthorized data types */
+    bool b1=true;
+    bool b2=0;
+    int i1=44;
+    int i2=-12;
+    int i3=0;
+    int i4=89;
+    int oi1=077; //077 is octal for 63
+    double d1=3.14;
+    double d2=-128.99;
+    double d3=9;
+    double d4=-76;
+
+    cout << "boolalpha << 88: " << boolalpha << 88 << endl;
+    cout << "1: " << 1 << endl;
+    cout << "boolalpha << 1: " << boolalpha << 1 << endl;
+    cout << "true: " << true << endl;
+    cout << "b1: " << b1 << endl;
+    cout << "sx=3: " << boolalpha << sx << endl;
+    cout << "b2: " << b2 << endl;
+    cout << "showpoint << sx: " << showpoint << sx << endl;
+    cout << showpos << showpoint;
+    cout << "showpos << showpoint" << endl;
+    cout << "i1: " << i1 << endl;
+    cout << "i2: " << i2 << endl;
+    cout << "d1: " << d1 << endl;
+    cout << "d2: " << d2 << endl;
+    cout << "d3: " << d3 << endl;
+    cout << "d4: " << d4 << endl;
+    cout << "i3: " << i3 << endl;
+    cout << "i4: " << i4 << endl;
+    cout << "showbase << oct" << showbase << oct << endl;
+    cout << "i1: " << i1 << endl;
+    cout << "i2: " << i2 << endl;
+    cout << "i3: " << i3 << endl;
+    cout << "i4: " << i4 << endl;
+    cout << "oi1: " << oi1 << endl;
+    cout << "showbase << hex" << showbase << hex << endl;
+    cout << "i1: " << i1 << endl;
+    cout << "i2: " << i2 << endl;
+    cout << "i3: " << i3 << endl;
+    cout << "i4: " << i4 << endl;
+    cout << "oi1: " << oi1 << endl;
+    cout << noshowbase << noshowpos << dec << endl;
+    cout << "noshowbase << noshowpos << dec" << endl;
+    cout << "i1: " << i1 << endl;
+    cout << "hex << showbase" << endl << hex << showbase;
+    cout << "i1: " << i1 << endl;
+    cout << "i2: " << i2 << endl;
+    cout << "i3: " << i3 << endl;
+    cout << "i4: " << i4 << endl;
+
+    cout << noshowbase << noshowpos << dec << endl;
+    // cout << setw(10) << left << 7 << setfill('x') << "." << endl;
+    cout << setw(10) << left << 7 << setfill('x') << "." << endl;
+    cout << showpos << -7 << endl << noshowpos;
+
+    cout << setw(10) << setfill('x') << right << 7 << endl;
+    cout << setw(10) << 7 << endl;
+    cout << right << setw(10) << setfill('x') << 7 << endl;
+    cout << setfill('x') << right << setw(10) << 7 << endl;
+    cout << 9 <<"lol\n" << endl;
+
+    cout << setw(15) << setfill('-') << "PRODUCT" << setw(15) << setfill('-') << "AMOUNT" << endl;
+    cout << setw(15) << setfill('-') << "Brush"  << setw(15) << setfill('-') << 10 << endl;
+    cout << setw(15) << setfill('-') << "Paste"  << setw(15) << setfill('-') << 8 << endl << endl;
+
+    cout << setw(15) << left << setfill('-') << "PRODUCT" << setw(15) << left << setfill('-') << "AMOUNT" << endl;
+    cout << setw(15) << left << setfill('-') << "Brush"  << setw(15) << left << setfill('-') << 10 << endl;
+    cout << setw(15) << left << setfill('-') << "Paste"  << setw(15) << left << setfill('-') << 8 << endl << endl;
+
+    cout << setw(15) << right << setfill('-') << "PRODUCT" << setw(15) << right << setfill('-') << "AMOUNT" << endl;
+    cout << setw(15) << right << setfill('-') << "Brush"  << setw(15) << right << setfill('-') << 10 << endl;
+    cout << setw(15) << right << setfill('-') << "Paste"  << setw(15) << right << setfill('-') << 8 << endl << endl;
+
+    /* checking some setw and setprecision stuff */
+    cout << setw(10) <<  setfill('-') << "\nHello" << endl << endl;
+    cout << setw(10) <<  right << setfill('-') << "Hello" << endl;
+    cout << setw(10) <<  left << setfill('-') << "Hello" << endl;
+    cout << setw(6) <<  setfill('-') << "Hello" << endl;
+    cout << setw(5) <<  setfill('-') << "Hello" << endl;
+    cout << setw(4) <<  setfill('-') << "Hello" << endl;
+    cout << setw(3) <<  setfill('-') << "Hello" << endl;
+    cout << setw(3) << 4898908 << endl; // the whole thingie is printed
+    cout << setfill('-') << setw(10);
+    cout << 10 << endl; // setw is still looking for a value here
+    cout << 10 << '.' << endl;
+    cout << setprecision(2) << 840493.04393094094 << endl;
+    cout << setw(2) << setprecision(2) << 840493.04393094094 << endl;
+    cout << setprecision(4) << 12.3565646 << endl;
+    cout << boolalpha << true << endl;
+    cout << setw(10) << setfill('x') << true << endl;
+    cout << setw(10) << b1 << endl; // setfill is not working
+    cout << setw(10) << 10 << endl;
     return 0;
 }
