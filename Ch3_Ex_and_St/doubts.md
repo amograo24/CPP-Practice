@@ -161,3 +161,6 @@ setfill ain't working
 
 does order matter?
 There's no specific order, but you need to set attributes first
+
+how does cout work? like does it convert everything into a string? doesn't seem to be doing that for boolean values.
+why does showboolalpha not work with setw whereas noboolalpha works

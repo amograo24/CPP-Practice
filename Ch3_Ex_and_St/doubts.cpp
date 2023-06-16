@@ -207,7 +207,14 @@ int main () {
     cout << setprecision(4) << 12.3565646 << endl;
     cout << boolalpha << true << endl;
     cout << setw(10) << setfill('x') << true << endl;
-    cout << setw(10) << b1 << endl; // setfill is not working
+    cout << setw(10) << b1 << endl; // setfill/setw is not working
     cout << setw(10) << 10 << endl;
+    cout << "string true upcoming:\n";
+    cout << setw(10) << "true" << endl;
+    cout << "using bool variable but without the bool alpha:\n";
+    cout << setw(10) << noboolalpha << b1 << endl; // setw now works when bool alpha is there
+    cout << endl;
+    cout << boolalpha << b1 << endl;
+    cout << "kk" << setw(10) << b1 << endl;
     return 0;
 }
