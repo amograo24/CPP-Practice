@@ -60,13 +60,53 @@ int main () {
     const short sresult=sx*sy;
     cout << "sx: " << sx << ", sy: " << sy << "sx*sy: "  << sx*sy << ", type(sx*sy)" << typeid(sx*sy).name() << endl;
     cout << "sresult: " << sresult << ", type(sresult): " << typeid(sresult).name() << endl; //overflow
+    cout << "8: " << 8 << ", (double)8: " << showpoint << (double) 8 << endl; 
+    cout << "99: " << 99 << ", (char)99: " << showpoint << (char) 99 << endl;
 
     // 36000-32767=3233
     // -32768+(3233-1)=-29536
 
+    /* checking unsigned for other types */
+    // The following are invalid:
+    // short char sc = 96;
+    // short bool ub = true;
+    // long bool lb = true;
+    // signed bool sb = true;
+    // long char lc = 97;
+    // short float sf = 3.14;
+    // long float lf = 3.14;
+    // signed float sif = 3.14;
+    // unsigned float uf = 3.14;
+    // signed double sd = 3.14;
+    // unsigned double ud = 3.14;
+    // long short ls = 3;
+    // short short ss;
 
-    
-    // check how floating point nums are saved, random digits added at the end
+    // The following are valid:
+    signed short ss;
+    unsigned short us;
 
+    signed int si;
+    unsigned int ui;
+
+    signed long sl;
+    unsigned long ul;
+
+    signed char sc;
+    unsigned char uc;
+
+    long double ld;
+
+    long long ll;
+
+    // if the size of all the below is the same, then does it really make a difference? Or is it system dependent?
+    cout << endl << "sizeof(long): " << sizeof(long) << endl;
+    cout << "sizeof(long long): " << sizeof(ll) << endl;
+    cout << "sizeof(double): " << sizeof(double) << endl;
+    cout << "sizeof(long double): " << sizeof(ld) << endl;
+
+    /* Checking if a value is greater than max, then can it be +ve (in signed)*/
+    cout << "\n65540 in a short: " << static_cast<short>(65540) << endl; // 4
+    // 32768 is 1 more than max, so it will give -32768. Now, 32768*2=65536 which will give 0. So 64440 will give 4.
     return 0;
 }

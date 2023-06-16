@@ -60,7 +60,7 @@ int main() {
     short int g = 32766.99999999999999999999999999999999999;
     short int h = 32767.99999999999999999999999999999999999;
     short int i = 32768.99999999;
-    int j = 38998938.9999999999; // round off, why?
+    int j = 38998938.9999999999; // round off, why? -> this is literally being stored as 38998939.0 in double
     int k = 23.67; // why no round of here?
     int l = (int)38998938.9999999999;
 
