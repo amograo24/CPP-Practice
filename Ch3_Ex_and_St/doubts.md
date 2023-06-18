@@ -118,52 +118,82 @@ Q) If a manipulator is not meant for a particular data type, and it is still use
 
 A) No, an implicit type cast does not take place if a manipulator is not meant for a particular data type. The manipulator will simply be ignored. 
 
+Q) When a value is put in a char that doesn't have an ASCII value associated with it, what happens?
+
+A) Possible outcomes are: 
+- wrap-around of the value to get it in the signed or unsigned 1 byte range
+- truncation of the value to meet the desired data type
+- platform-specific behaviour
+
 Q) Can we use `char` in `setprecision` and `setw` and `int` in `setfill`? What happens when we use a `double`?
 
-A) 
+A) From my observation, in `setprecision` and `setw` you can put any datatype and it is implicitly type casted into an `int`. However, for `setfill`, only a `char` works. This is perhaps because the range of the char is limited. There are 256 possible values in a byte, but only 128 out of them have valid ASCII values. So if an integral value doesn't have a char associated with it, then what would it setfill with? Did the makers think of this and try avoiding this error with this thought process in their mind?
+
+Q) Does the order of the output manipulators matter?
+
+A) There's no specific order of the output manipulators, but you need to set attributes first before passing the value.
+
+Q) Is any variable in the `main()` function a global variable?
+
+A) Nope. Global variables are defined out of the scope of any function.
+
+Q) Is `6;` a null statement?
+
+A) It is not a null statement, but it is a useless statement. The `6` expression is evaluated, and then not used in any meaningful way.
+
+Q) Does a function or a loop basically have space for just one statement?  A compound or single, but just one statement?
+
+A) Not really, `int main() return 0;` will not work even though it's just a single statement, because the syntax thinks of the `int main()` as a declaration and not a definition.
+
+Q) Can `main` have any other return type or no return type? Can any other number apart from `0` be designated as a success.
+
+A) No! While defining, main must return an int type. This has something to do with how the operating system looks at the final status which generally just takes a simple integer value. I think the system consider's `0` as the success status and anything else as a failure.
+
+- `return 0: ` ![Alt text](image.png)
+- `return 1: ` ![Alt text](image-1.png)
+- `return 'a': ` ![Alt text](image-1.png) (here implicit type casting takes place)
+
+Q) There's type casting taking place as we do `char c=33.44;`?
+
+A) Yes, implicit type casting takes place. The 33.44 becomes 33.
+
+Q) What's the simple difference between expressions and statements?
+
+A) An expression is a combination of values, variables, operators, and function calls that evaluates to a single value. It represents a computation or a calculation. Statements, on the other hand, are complete units of code that perform an action or a sequence of actions. They are used to control the flow of execution, define behavior, or perform some operation. Statements do not produce a value themselves, but they may modify the state of a program.
+
+Q) How does the output of floating point values and `setprecision` work?
+
+A) Based on my observations:
+- There are 2 ways of outputting a floating-point number: (none), fixed, scientific.
+- There is no default by the system, and it uses fixed or scientific based on the type of value
+- Generally if the value is too big, or too small, scientific is preferred, otherwise fixed is preferred.
+- By default, when no manipulator is explicitly used for floating point values, upto 6 digits totally (before decimal + after decimal) are used. If the value can be represented with ease (with some round off perhaps) then it is represented in a fashion similar to the fixed format. If not, then it is represented in a scientific format. There is no extra padding with zeroes (`0`).
+- When the `fixed` mainpulator is explicitly used, then it appears that there are 6 digits after the decimal. There is extra padding with zeroes if all 6 digits after the decimal couldn't be filled.
+- In the `scientific` format, it appears that there's one digit before the decimal, and around 6 digits after the decimal followed by an `e` and a `+` or `-` with the exponent power. There is extra padding with zeroes if all 6 digits after the decimal couldn't be filled.
+- Now, if these 2 manipulators are explicitly used, then the `setprecision` alters the number of digits after the decimal.
+- If these 2 manipulators are not explicitused, then the total number of digits (before decimal+after decimal) will not exceed the integer passed as the argument. It can be lesser number of digits though.
+- Whenever precision has to be reduced, there is round-off taking place.
+
+Q) What did you observe about `setw`?
+
+A) The `setw` manipulator waits only for the next valid value and then has to be used again. It basically doesn't change the state of the output stream. The value passed as the argument to the `setw` value manipulator is the minimum value of the width. That is, the padding will be added only if the width passed to `setw` is more than the width of the item. The default padding is whitespace.
+
+Q) How can `fixed` or `scientific` be reset? How can we get rid of `setprecision`?
+
+A) The `fixed` or `scientific` can be reset using `resetiosflags`. For example: `cout << resetiosflags(ios::scientific);`. Based on my observations, the `setprecision` can be rid by passing a negative value as an arugument to it.
+
+Q) What happens to variables that are not initialized?
+
+A) They are initialized to their default values (0) if they are global variables.
+
+Q) What is a namespace?
+
+A) In programming, a `namespace` is a feature that allows you to organize and group related code elements, such as variables, functions, and classes, into distinct named scopes. It is to be noted that it is a keyword.
 
 Q) Do input manipulators change the state of the input stream?
 
 A)
 
-Q) Is any variable in the `main()` function a global variable?
 
-A)
-
-Q) Is `6;` a null statement?
-
-A)
-
-Q) Does a function or a loop basically have space for just one statement?  A compound or single, but just one statement?
-
-A)
-
-Q) Can `main` have any other return type or no return type?
-
-A)
-
-Q) Can `setprecision` be used any other data types? What happens then?
-
-A)
-
-Q) There's type casting taking place as we do char=3.44?
-
-A)
-
-
-Q) expression vs statement?
-
-Q) numeric limits how does it work
-
-setprecision and setw what if they collide, try with rght and left
-does it round off?
-setfill ain't working
-
-does order matter?
-There's no specific order, but you need to set attributes first
-
-how does cout work? like does it convert everything into a string? doesn't seem to be doing that for boolean values.
-why does showboolalpha not work with setw whereas noboolalpha works
-look at namespace std also
-
-explain setw, setprecision
+<!-- how does cout work? like does it convert everything into a string? doesn't seem to be doing that for boolean values.
+why does showboolalpha not work with setw whereas noboolalpha works -->

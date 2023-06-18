@@ -233,7 +233,37 @@ int main () {
     cout << setprecision('a') << 100.123456789 << endl; // getting 98 digits in total
     cout << setprecision(8.990) << 100.123456789 << endl;
     cout << setprecision(8) << 100.123456789 << endl;
+    cout << setprecision(sx) << 100.123456789 << endl;
+    cout << setprecision(sx*3-1) << 100.123456789 << endl;
+    cout << setprecision(ss*3-1) << 100.123456789 << endl; // ss is a stringstream object
+    cout << setprecision(e) << 100.123456789 << endl; //e='a'
+    // cout << setw(10) << setfill(sx) << 100.123456789 << endl; //won't workk
 
+
+    /* max range of char? and does it wrap? */
+    cout << endl << "sizeof(char): " << sizeof(char) << endl;
+    cout << numeric_limits<char>::max() << endl;
+    cout << numeric_limits<char>::min() << endl;
+    const char tc1=122;
+    const char tc2=-6;
+    const char tc3=289; // wraps around // 128->-128, 256->0, 289->33=>'!'
+    cout << tc1 << endl;
+    cout << tc2 << endl;
+    cout << tc3 << endl;
+
+    /* checking fixed vs scientific, setprecision */
+    double dd1=100.123456789;
+    cout << endl;
+    cout << defaultfloat; // make it default
+    cout << dd1 << endl;
+    cout << fixed << dd1 << endl;
+    cout << scientific << dd1 << endl;
+    // double dd2=100.123456789;
+
+    /* checking garbage values */
+    int g1,g2=3;
+    cout << "\ng1: " << g1 << endl;
+    cout << "g2: " << g2 << "\ng1*g2: " << g1*g2 << endl << "g1+g2: " << g1+g2 << endl;
 
     
 
