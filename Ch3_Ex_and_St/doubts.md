@@ -190,9 +190,17 @@ Q) What is a namespace?
 
 A) In programming, a `namespace` is a feature that allows you to organize and group related code elements, such as variables, functions, and classes, into distinct named scopes. It is to be noted that it is a keyword.
 
-Q) Do input manipulators change the state of the input stream?
+Q) What happens when a wrong data type has been entered during input?
 
-A)
+A) The program might enter undefined behaviour (program might crash, or might speed run, or random values might show up). However, we can place checks for the data type and can ask the user to prompt again. Look at this image and understand how we can check if the correct data type has gone:
+![Alt text](image-2.png)
+
+Q) Do input manipulators like `hex` or `oct` change the state of the input stream?
+
+A) Yes, there are input manipulators that change the state of the input stream. They work similar to the output manipulators.
+![Alt text](image-3.png)
+![Alt text](image-4.png)
+In the output image, hexadecimal 14 is entered which translates to 20 decimal. Then it is intended to enter octal 24 is entered with a hope to tranlate to 20 in decimal. However, the input stream takes this as an hexadecimal 24 and translates it to a 36 in decimal.
 
 
 <!-- how does cout work? like does it convert everything into a string? doesn't seem to be doing that for boolean values.
