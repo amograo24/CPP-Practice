@@ -15,13 +15,20 @@ So as observed (in simple cases), to obtain `num%denom`, we can first do `num/de
 
 Q) How does an assignment statement work when it part of another statement or an expression? Are the new values changed in real-time if it is compounded with the same variable?
 
-A) So an assignment expression in a statement changes the value of the variable in real-time. However, if the same variable is used multiple times, then the value of the variable can be very different at different instances in the same expression. It all depends on the order of presedence, and associativity.
+A) So an assignment expression in a statement changes the value of the variable in real-time. However, if the same variable is used multiple times, then the value of the variable can be very different at different instances in the same expression. It may depend on the order of presedence, and associativity, or might be totally unspecified.
 
 For example, we have `int y=10, z=5;` at ALL instances. The following expressions will lead to their respective outcomes: 
 - `(y=(y+z)+(y=2))` => y=(**10**+5)+(**2**) -> y=17
 - `(y=(y=2)+(y+z))` => y=(**2**)+(**2**+5) -> y=9
 - `(y=(y+z)+(y=2)+y-4)` => y=(**10**+5)+(**2**)+**2**-4 -> y=15
 - `(y=(y=2)+(y+z)+y-4)` => y=(**2**)+(**2**+5)+**2**-4 -> y=7
+
+However, here it doesn't appear that the `()` is getting evaluated first. For example:
+- `(y=y-4+(y=2)+(y+z))` => y=**10**-4+(**2**)+(**2**+5) -> y=15 
+
+Another example is `i=i++`. The final value of i is ambiguous because the increment is not guaranteed to be executed before the assignment.
+
+**The order in which different sub-expressions are evaluated is not necessarily specified. Hence it is highly advisable to avoid expressions where the value of a variable changes multiple times.**
 
 Q) When we perform `3.0+9`, the `9` is implicitly casted into a `9.0`. Therefore, is new memory allocated for this `9.0` as well? How does the memory management work in type casting? When a variable is type casted, then what is happening in the memory?
 
