@@ -49,6 +49,10 @@ int main () {
     // y=(y=2)+(y+z)+y-4
     cout << "y=(y=2)+(y+z)+y-4: " << (y=(y=2)+(y+z)+y-4) << endl; // y=2+(2+5)+2-4? -> y=7
     y=10;
+    // y=y-4+(y=2)+(y+z)
+    cout << "y=y-4+(y=2)+(y+z): " << (y=y-4+(y=2)+(y+z)) << endl; // y=10-4+2+(2+5)? -> y=15
+    y=10;
+
 
     /* checking the overflow when we short*short can no longer be accomodated in a short */
 
