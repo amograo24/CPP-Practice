@@ -107,7 +107,51 @@ Q) Does C++ care about indentation? Can the whole code be written in just one li
 
 A) Not really, the indentation doesn't matter. Now, the whole code may be written in 1 line. However, if we have pre-processor directives or include statements, then there's a requirement for a new line to write the remaining code. So the answer to the second question is both yes, and no. It honestly depends.
 
+Q) Comment what you observe about switch-case statements?
 
-Q) Can we give escape sequences as integers? "\12"
+A) I observed the following things about switch case:
+- The expression in the switch must be of an integral type. It can be a variable, or a literal too. But doesn't make sense if it is a literal, right?
+- A case must also be of an integral type.
+- No two cases may be the same:
+    - Cases`'a'`, `97`, `'A'+32`, `static_case<int>(97.88)`are all the same. Hence, only one of this can be used, and not all, because they represent the same value which will lead to a conflict.
+    - For example, `8||0`, `true`, and `(1)` are all the same.
+- Double is not implicitly casted to int when used as an expression for a case or switch.
+- Statements above the first case are not excecuted.
+- Statements under the first matching condition are executed and fall through till the next `break` is found.
+- We can also use compound statements for cases (obviously).
+- The whole switch statement with multiple cases can be written in a single line.
+- The switch statement expects just one statement (simple or compound).
+- Look at the following:
+    - `switch(j) case 2:` - valid
+    - `switch(j);` - valid
+    - `switch(j) {}` - valid
+    - `switch(j) case 4: break; case 2: break;` - invalid as case 2 is no longer a part of switch(j)
+- Variable declarations and initializations in switch expressions are local.
+    - `switch(int k=5) case 5: {k++; cout << "k: " << k << endl; break;}`
+    - `cout << "K: " << k << endl;` - now this `k` is not defiend.
+- The order of cases doesn't matter.
+- Based on my observation, the `defualt` can be placed anywhere. The switch statement evaluates all options, and then if nothing matches, it jumps to the default. If there is a case that matches and is placed below the default, then still that case itself is entered, and the case above (defualt) is ignored.
 
-Q) `;` ends the statement unless in a compound statement
+Q) What happens when we try to increment uninitialized variables?
+
+A) The leftover values in them, or the garbage values are incremented. There is some undefined behaviour. For example, in `int days; days+=10;` we can't really predict what will happen to the value in days.
+
+Q) Semicolon `;` ends the statement unless in a compound statement?
+
+A) Yes. Also, a compound statement's ending is marked witht he curly braces, so there is no need of semicolon.
+
+Q) Can either of the result expressions (post the condition) in a ternary expression be empty?
+
+A) From my understanding, there is no "do nothing" option in a ternary expression.
+
+Q) How can we show multiple options for a case in switch case? For example: `case 5,6: do something`.
+
+A) We can do this by doing `case 5: case 6: do something;`. So if case 6 is matched, then it anyway executes. However, if case 5 is matched, there is an empty body with no break, so it just falls to case 6 and executes what is in there.
+
+Q) What's an elegent way of doing `if(a!=3) a=3;`
+
+A) Elegent ways of doing the above is using logical operators such as `&&` and `||`. For example:
+- `a==3 || (a=3)`
+- `a!=3 && (a=3)`
+
+<!-- Q) Can we give escape sequences as integers? "\12" -->

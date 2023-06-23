@@ -5,9 +5,15 @@ using namespace std;
 
 int main() {
 
+    int kkkk;
+    cout << "kkkk: " << kkkk << endl;
+    kkkk+=10;
+    cout << "kkkk: " << kkkk << endl;
     unsigned int ui1;
     float f1;
-    string str1;
+    string str1,str2="a";
+    // cout << str2+44 << endl; // invalid
+    cout << "a"+44 << "**" << endl; // valid
     char c,c2;
     cout << "Enter an unsigned integer: ";
     cin >> ui1; // -4294967294 gives 2 ||| try 1.888 and see

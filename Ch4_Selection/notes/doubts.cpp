@@ -177,6 +177,8 @@ int main() {
     if(2) { if(0); else { cout << "zero\n"; } }
 
     {} //valid
+    {}; //valid
+    ; //valid
 
     return 0;
 }
