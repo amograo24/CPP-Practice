@@ -165,3 +165,6 @@ For example:
         di1--;
     } while(di1); // this line will cause an error since di1 is out of scope
 ```
+Q) How can overflow or underflow be detected during `cin`? What does cin return?
+
+Q) Why do programmers like to avoid `break` or `goto` statements?

@@ -90,5 +90,17 @@ int main() {
     /* condition in for loop */
     // for(int i=0;i<5;if(kk) i++) {
     // }
+    int x;
+    for(x=0;x<10;x++){
+        while(x<100){
+            cout << x << " ";
+            x++;
+        }
+        cout << endl << x << endl;
+    }
+    cout << endl << x << endl;
+    // 0.......99
+    // 100
+    // 101
     return 0;
 }
