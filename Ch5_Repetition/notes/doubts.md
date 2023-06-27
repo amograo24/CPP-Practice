@@ -88,26 +88,80 @@ A) Implicit type casting occrurs if valid. Even a double is implicitly casted in
 
 <!-- https://stackoverflow.com/questions/28002/regular-cast-vs-static-cast-vs-dynamic-cast -->
 
-Q) Can we make the for loop run infinitely if the body is empty? Or does it just run once? Or does it never run?
+Q) Can we make the for loop run infinitely if the header is empty? Or does it just run once? Or does it never run?
 
-A)
-
-Q) Define a variable in do and use it in while? 
+A) If the header is empty (`for(;;);`), then the loop runs infinitely as the missing condition statement is deemed boolean true.
 
 Q) Can the condition in the for loop be a non-counter condition?
 
-A)
+A) Yes, it most definitely can be a non-counter condition. This condition can be anything. As long as this condition is true, the loop will run, if this condition is false, the loop won't run anymore.
 
 Q) Can we initialize more than one variable in the initialization section? Similarly, can we update more than one variable in the update section?
 
-A)
+A) Yes, we can initialize more than one variable in the initialization section, and we can update more than one variable in the update section. We can update multiple things by just placing a comma (`,`) between the multiple things we would like to update. Here are some observations that I have made:
+- While initializing multiple variables of different types, we can just initialize them and seperate each variable and its initialization using a comma. For example: `for(int i2=1,i3=4;i3;i3--,i2--)`.
+- However, if we want to declare multiple variables of different types, then there is no simple syntax for this. But there are some work arounds. Let's for the case of the example say we want to declare and initialize two integers and a float:
+    - `int i2, i3; float f1; for(i2=1,i3=4,f1=33.4;i3;i3--,i2--,f1+=2.3) {...}` However, in this method, the variables i2, i3, and f1 have scope that extends further than that of the for loop.
+    - `{int i2, i3; float f1; for(i2=1,i3=4,f1=33.4;i3;i3--,i2--,f1+=2.3) {...} }` Placing the variable declarations and the whole loop withing a compound statement to force local behaviour.
+    - https://stackoverflow.com/questions/2687392/is-it-possible-to-declare-two-variables-of-different-types-in-a-for-loop
+- Variables of different types may be intialized and updated with ease, but when it comes to declaring them there is no simple syntax, but some work arounds. Two of them have been shown above.
 
 Q) If we don't want to increment or decrement by just 1, then what is the notation or syntax to update in the update section?
 
-A)
+A) So, as you observe, i++ or i-- also updates the value. Something like i+1 or i-1 will just perform an expression but won't be making any side effect (so it's useless). So if we want to do a form of update where a side effect takes place (value is changed/altered), then we use an assignment expression. For example: `x=x+43-y` or `x*=10`, etc.
+![Alt text](image.png)
 
 <!-- Q) If the condition section in a for loop is empty, then  -->
 
 Q) In a for loop, can the initialization statement be empty? What happens when the condition is empty?
 
-A) 
+A) Everything within the header can be empty. When the condition is empty, it is defaulted to true. It can also be noted that the update statement can also just be a normal statement that you would like to execute after each loop (a `cout << endl` for example). Let's say we are using multiple variables, and that we want to increment a certain variable only if some conditions are met, then we can do this inside the body. But let's say in the same example, no matter what we want to put a new line after every statement, then we can just put this in the update section of the header.
+
+In the loop:
+- The initialization happens only once at the very beginning
+- The condition is then checked
+- The body is then executed if the condition evaluates to boolean true
+- Then the update expression/statement is executed
+- Then the condition is checked again and so on
+
+![Alt text](image-1.png)
+
+```C++ 
+    for(int i1=0;i1<5;i1++) {
+        cout << i1 << " ";
+    }
+```
+is the same as
+```C++
+    for(;;) {
+        if(i1==5) break;
+        cout << i1 << " ";
+        i1++;
+    }    
+```
+
+
+Q) Comment on the scope of variables defined in a compound statement.
+
+A) Variables declared in a compound statement are only within the scope of that compound statement, and will be rendered useless else where. If we re-declare another variable with the same name that is present outside the compound statement, then this new variable is a local variable within the compound statement, and any change to its value will reflect only within the compound statement. The variable outside the compound statement is unaffected. `int mm=5; {int mm=8; cout << endl << mm << endl;} cout << m << endl;` yields  `8` and `5`.
+
+Q) Can a variable declared in the header of a for loop be re-declared in the body?
+
+A) No, a variable declared in the header of the for loop may not be re-declared in the body since it's considered the same scope.
+For example:
+```C++
+    for(int z=0;!z;z++){
+        int z=5; // invalid as it is redefining z which is already declared for this for loop scope
+    }
+```
+
+Q) Can we declare a variable in the `do` part and use it in the `while` immedeately after?
+
+A) Based on my observations, we cannot since the scope of the do is different than that of the while.
+For example: 
+```C++
+    do {
+        int di1=5;
+        di1--;
+    } while(di1); // this line will cause an error since di1 is out of scope
+```
