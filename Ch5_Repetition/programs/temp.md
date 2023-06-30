@@ -16,8 +16,12 @@ b. Repeat step (a) until n is 0. The greatest common divisor is m. Test your pro
 PRG-11. Write a program that reads a list of scores between 0 and 100 and finds and prints the smallest and the largest scores. The program needs to ask for the number of the scores from the user; this number must be less than or equal to 10.
 
 PRG-12. Write a program to display the leap years in the years 2000 to 2099. A leap year is a year that is divisible by 4, but if it is divisible by 100, it should also be divisible by 400.
+
 PRG-13. Write a program that asks the user to enter a positive integer. The program then prints the sum of the digits.
+
 PRG-14. Write a program that asks the user to enter a positive integer. The program then prints the integer in reverse order. For example, if the user enters 359, the program prints 953.
+
 PRG-15. Write a program that asks the user to enter a positive integer. The program then checks to see if the number is a palindrome. A palindrome integer is an integer that is the same when the order of digits is reversed. For example, 353 and 376673 are palindromes. Hint: Use the result of the program in PRG-14.
+
 PRG-16. Write a program that creates a table of Celsius/Fahrenheit conversions between 0 and 99 degree Celsius. The conversion formula is as follows:
 Fahrenheit = Celcius * 180.0 / 100.0 + 32
